@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Encryption - Welcome</title>
+    <meta name="description" content="Secure Encryption App: Encrypt and protect your files with advanced blockchain-based security.">
+    <link rel="icon" href="images/favicon.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body {
             background: #f8f9fa;
@@ -23,7 +27,7 @@
             color: #5f2c82 !important;
         }
         .hero-section {
-            min-height: 60vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -33,16 +37,21 @@
             padding-bottom: 2rem;
         }
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #5f2c82;
         }
-        .hero-desc {
-            font-size: 1.15rem;
-            margin-bottom: 2.5rem;
-            color: #444;
-        }
+       .hero-desc {
+    font-size: 0.15rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #6a82fb 0%, #5f2c82 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* For Firefox */
+    color: transparent;
+}
+
         .btn-gradient {
             background: linear-gradient(90deg, #6a82fb 0%, #5f2c82 100%);
             border: none;
@@ -53,15 +62,22 @@
             margin: 0 0.5rem;
             transition: box-shadow 0.2s;
         }
+
+.info-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 2rem;
+    transition: transform 0.2s ease;
+}
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+
         .btn-gradient:hover {
             box-shadow: 0 4px 24px 0 rgba(90, 60, 130, 0.12);
             color: #fff;
-        }
-        .features {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
         }
         .feature-box {
             background: #fff;
@@ -76,99 +92,145 @@
             color: #6a82fb;
             margin-bottom: 0.7rem;
         }
-        @media (max-width: 900px) {
-            .features {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
+        .footer-links a {
+            color: #5f2c82;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="#">Secure Encryption</a>
-            <div class="ms-auto">
-                <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                <a href="signup.php" class="btn btn-primary">Sign Up</a>
-            </div>
-        </div>
-    </nav>
-    <div class="container hero-section">
-        <h1 class="hero-title">Secure File Encryption</h1>
-        <p class="hero-desc">Secure. Private. Fast.<br>Protect your sensitive files with advanced encryption and seamless access.<br>Trusted by professionals for robust data privacy.</p>
-        <div class="mb-4">
-            <a href="login.php" class="btn btn-gradient me-2">Login</a>
-            <a href="signup.php" class="btn btn-outline-secondary ms-2">Sign Up</a>
-        </div>
-        <div class="features">
-            <div class="feature-box">
-                <i class="bi bi-shield-lock feature-icon"></i>
-                <h5 class="mb-2">Secure Authentication</h5>
-                <p class="mb-0">Multi-layered login with MetaMask wallet integration.</p>
-            </div>
-            <div class="feature-box">
-                <i class="bi bi-file-earmark-lock2 feature-icon"></i>
-                <h5 class="mb-2">File Protection</h5>
-                <p class="mb-0">Advanced encryption keeps your files safe and private.</p>
-            </div>
-            <div class="feature-box">
-                <i class="bi bi-wallet2 feature-icon"></i>
-                <h5 class="mb-2">Web3 Ready</h5>
-                <p class="mb-0">Seamless MetaMask wallet support for next-gen security.</p>
-            </div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#">Secure Encryption</a>
+        <div class="ms-auto">
+            <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
+            <a href="signup.php" class="btn btn-primary">Sign Up</a>
         </div>
     </div>
-    <!-- How it Works Section -->
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="p-4 p-md-5 bg-white rounded-4 shadow-lg mb-4" style="background:rgba(255,255,255,0.98);">
-                    <h3 class="mb-4 text-center" style="color:#5f2c82; font-weight:600; letter-spacing:0.5px;">How It Works</h3>
-                    <div class="row g-4 align-items-stretch">
-                        <div class="col-md-4">
-                            <div class="h-100 d-flex flex-column align-items-center justify-content-center px-3">
-                                <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width:64px;height:64px;background:linear-gradient(135deg,#6a82fb22,#5f2c8222);">
-                                    <i class="bi bi-person-check" style="font-size:2rem;color:#6a82fb;"></i>
-                                </div>
-                                <h6 class="mb-2" style="font-weight:600;">1. Create Your Account</h6>
-                                <p class="small text-muted mb-0">Sign up securely with your email and MetaMask wallet.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="h-100 d-flex flex-column align-items-center justify-content-center px-3">
-                                <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width:64px;height:64px;background:linear-gradient(135deg,#6a82fb22,#5f2c8222);">
-                                    <i class="bi bi-lock" style="font-size:2rem;color:#6a82fb;"></i>
-                                </div>
-                                <h6 class="mb-2" style="font-weight:600;">2. Encrypt & Protect</h6>
-                                <p class="small text-muted mb-0">Upload and encrypt your files instantly with advanced security.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="h-100 d-flex flex-column align-items-center justify-content-center px-3">
-                                <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width:64px;height:64px;background:linear-gradient(135deg,#6a82fb22,#5f2c8222);">
-                                    <i class="bi bi-unlock" style="font-size:2rem;color:#6a82fb;"></i>
-                                </div>
-                                <h6 class="mb-2" style="font-weight:600;">3. Access Anytime</h6>
-                                <p class="small text-muted mb-0">Easily decrypt and access your files whenever you need them.</p>
-                            </div>
-                        </div>
-                    </div>
+</nav>
+
+<section class="container hero-section ">
+    <!-- <img src="images/encryption-illustration.svg" alt="Encryption Illustration" class="img-fluid mb-4" style="max-width: 400px;"> -->
+    <h1 class="hero-title">Secure File Encryption</h1>
+    <span class="hero-desc"><h3> Secure. Private. Fast. </h3></span> <P><br>Protect your sensitive files with advanced encryption.<br>Trusted by professionals for robust data privacy.</p>
+    <div class="mb-4">
+        <a href="login.php" class="btn btn-gradient me-2">Login</a>
+        <a href="signup.php" class="btn btn-outline-secondary ms-2">Sign Up</a>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h3 class="mb-5" style="color:#5f2c82;">Core Features</h3>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="feature-box">
+                    <i class="bi bi-shield-lock feature-icon"></i>
+                    <h5>Secure Authentication</h5>
+                    <p>Multi-layered login with MetaMask integration.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box">
+                    <i class="bi bi-file-earmark-lock2 feature-icon"></i>
+                    <h5>File Protection</h5>
+                    <p>Advanced encryption ensures privacy and safety.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box">
+                    <i class="bi bi-wallet2 feature-icon"></i>
+                    <h5>Web3 Ready</h5>
+                    <p>Seamless MetaMask wallet support for next-gen security.</p>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="mt-5 pt-4 pb-3 bg-light border-top">
-        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <div class="text-muted small mb-2 mb-md-0">
-                &copy; <?php echo date('Y'); ?> Secure Encryption. All rights reserved.
+</section>
+
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h3 class="mb-5" style="color:#5f2c82;">How It Works</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <i class="bi bi-person-check feature-icon"></i>
+                    <h6>Create Your Account</h6>
+                    <p>Sign up securely with your email and MetaMask wallet.</p>
+                </div>
             </div>
-            <div>
-                <a href="login.php" class="text-decoration-none me-3" style="color:#5f2c82;">Login</a>
-                <a href="signup.php" class="text-decoration-none" style="color:#5f2c82;">Sign Up</a>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <i class="bi bi-lock feature-icon"></i>
+                    <h6>Encrypt & Protect</h6>
+                    <p>Upload and encrypt your files instantly.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <i class="bi bi-unlock feature-icon"></i>
+                    <h6>Access Anytime</h6>
+                    <p>Decrypt and access your files securely whenever needed.</p>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h3 class="mb-5" style="color:#5f2c82;">Why Choose Secure Encryption?</h3>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="info-card">
+                    <i class="bi bi-shield-check fs-2 text-primary"></i>
+                    <h6 class="mt-2">Military-grade Encryption</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="info-card">
+                    <i class="bi bi-cloud-upload fs-2 text-primary"></i>
+                    <h6 class="mt-2">Fast Uploads</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="info-card">
+                    <i class="bi bi-person-lock fs-2 text-primary"></i>
+                    <h6 class="mt-2">Web3 Logins</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="info-card">
+                    <i class="bi bi-speedometer2 fs-2 text-primary"></i>
+                    <h6 class="mt-2">Quick Access</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5 text-white" style="background: linear-gradient(90deg, #6a82fb 0%, #5f2c82 100%);">
+    <div class="container text-center">
+        <h2 class="mb-3">Start Securing Your Files Today</h2>
+        <p class="mb-4">Your privacy matters. Encrypt with confidence using Secure Encryption.</p>
+        <a href="signup.php" class="btn btn-light px-4 py-2 fw-bold">Get Started</a>
+    </div>
+</section>
+
+<footer class="mt-5 pt-4 pb-3 bg-light border-top">
+    <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center">
+        <div class="text-muted small mb-2 mb-md-0">
+            &copy;                                                                                                                                                                                                       <?php echo date('Y'); ?> Secure Encryption. All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
+<!-- JS Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
 </body>
 </html>
