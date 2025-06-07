@@ -24,7 +24,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    
+
     <style>
         body {
             background: #f8f9fa;
@@ -107,6 +107,17 @@
             letter-spacing: 0.5px;
             text-align: left;
         }
+             .btn-gradient {
+            background: linear-gradient(90deg, #6a82fb 0%, #5f2c82 100%);
+            border: none; color: #fff; font-weight: 600;
+            padding: 0.65rem 2.2rem; border-radius: 30px;
+            transition: box-shadow 0.2s, transform 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .btn-gradient:hover {
+            box-shadow: 0 4px 24px 0 rgba(90, 60, 130, 0.12);
+            color: #fff; transform: translateY(-2px) scale(1.03);
+        }
         .main-content {
             padding: 2.5rem 2rem;
         }
@@ -152,6 +163,7 @@
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .action-card {
             background: #fff;
@@ -203,10 +215,17 @@
                 </div>
                 <a href="dashboard.php" class="nav-link"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
                 <a href="encrypt.php" class="nav-link"><i class="bi bi-lock"></i><span>Encrypt Files</span></a>
+                <a href="verify.php" class="nav-link"><i class="bi bi-shield-check"></i><span>Verify Integrity</span></a>
                 <a href="decrypt.php" class="nav-link"><i class="bi bi-unlock"></i><span>Decrypt Files</span></a>
                 <a href="profile.php" class="nav-link"><i class="bi bi-person"></i><span>Profile</span></a>
 <?php if (strtolower($role) === 'admin'): ?>
-                <a href="report.php" class="nav-link"><i class="bi bi-bar-chart"></i><span>Report</span></a>
+
+        <a href="report.php" class="nav-link"><i class="bi bi-bar-chart"></i><span>System Reports</span></a>
+
+<?php else: ?>
+
+        <a href="report.php" class="nav-link"><i class="bi bi-activity"></i><span>My Activity</span></a>
+
 <?php endif; ?>
                 <a href="logout.php" class="nav-link"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>
             </nav>
@@ -221,8 +240,8 @@
                     </div>
                 </div>
                 <!-- Welcome Card -->
-                <div class="welcome-card mb-4">
-                    <h2 class="mb-2" style="color:#5f2c82;font-weight:700;"><i class="bi bi-hand-thumbs-up-fill"></i>Welcome,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <?php echo htmlspecialchars($username); ?>!</h2>
+                <div class="welcome-card mb-5">
+                    <h2 class="mb-2" style="color:#5f2c82;font-weight:700;"><i class="bi bi-hand-thumbs-up-fill"></i>Welcome,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <?php echo htmlspecialchars($username); ?>!</h2>
                     <div class="text-muted">Manage your encrypted files securely</div>
                 </div>
                 <!-- Action Cards -->
@@ -231,7 +250,13 @@
                         <i class="bi bi-lock"></i>
                         <h4 class="mb-2">Encrypt Files</h4>
                         <div class="mb-2 text-muted">Secure your files with advanced encryption</div>
-                        <a href="encrypt.php" class="btn btn-gradient">Encrypt Now</a>
+                        <a href="encrypt.php" class="btn btn-gradient ">Encrypt Now</a>
+                    </div>
+                    <div class="action-card">
+                        <i class="bi bi-shield-check"></i>
+                        <h4 class="mb-2">Verify Integrity</h4>
+                        <div class="mb-2 text-muted">Check if your encryted files have been modified</div>
+                        <a href="verify.php" class="btn btn-gradient">Verify Now</a>
                     </div>
                     <div class="action-card">
                         <i class="bi bi-unlock"></i>
@@ -239,18 +264,7 @@
                         <div class="mb-2 text-muted">Access your encrypted files securely</div>
                         <a href="decrypt.php" class="btn btn-gradient">Decrypt Now</a>
                     </div>
-                    <div class="action-card">
-                        <i class="bi bi-person"></i>
-                        <h4 class="mb-2">Profile</h4>
-                        <div class="mb-2 text-muted">Manage your account settings</div>
-                        <a href="profile.php" class="btn btn-gradient">View Profile</a>
-                </div>
-                <div class="action-card">
-                    <i class="bi bi-bar-chart"></i>
-                    <h4 class="mb-2">Report</h4>
-                    <div class="mb-2 text-muted">View your encryption and decryption report</div>
-                    <a href="report.php" class="btn btn-gradient">View Report</a>
-                </div>
+
 
      </main>
         </div>

@@ -269,6 +269,7 @@
                 </div>
                 <a href="dashboard.php" class="nav-link"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
                 <a href="encrypt.php" class="nav-link"><i class="bi bi-lock"></i><span>Encrypt Files</span></a>
+                 <a href="verify.php" class="nav-link"><i class="bi bi-shield-check"></i><span>Verify Integrity</span></a>
                 <a href="decrypt.php" class="nav-link active"><i class="bi bi-unlock"></i><span>Decrypt Files</span></a>
                 <a href="profile.php" class="nav-link"><i class="bi bi-person"></i><span>Profile</span></a>
                 <a href="logout.php" class="nav-link"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>

@@ -5,12 +5,13 @@
         exit();
     }
 
-    $email   = $_SESSION['email'];
+    $email    = $_SESSION['email'];
     $username = ucfirst(strtolower(explode('@', $email)[0]));
-    $role    = $_SESSION['role'];
-    $avatar  = strtoupper($email[0]);
-    $success = '';
-    $error   = '';
+    $role     = $_SESSION['role'];
+    $avatar   = strtoupper($email[0]);
+    $userId   = $_SESSION['user_id'];
+    $success  = '';
+    $error    = '';
 
     // Create encrypted directory if it doesn't exist
     if (! file_exists('encrypted')) {
@@ -27,14 +28,15 @@
             $fileType     = $file['type'];
             $fileSize     = $file['size'];
             $originalName = $file['name'];
+            $tempPath     = $file['tmp_name'];
 
             // Validate file type
             $allowedTypes = [
                 'image/jpeg', 'image/png', 'image/gif',
                 'video/mp4', 'video/quicktime', 'video/x-msvideo',
                 'application/pdf',
-                'application/msword',                                                      // .doc
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             ];
             $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'mp4', 'mov', 'avi', 'pdf', 'doc', 'docx'];
             $ext               = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
@@ -45,18 +47,21 @@
                 $error = 'File size too large. Maximum size is 100MB.';
             } else {
                 try {
+                    // Calculate file hash
+                    $fileHash = hash_file('sha256', $tempPath);
+
                     // Read file in binary mode
-                    $handle = fopen($file['tmp_name'], 'rb');
+                    $handle = fopen($tempPath, 'rb');
                     $data   = '';
 
                     // Read file in chunks to handle large files
                     while (! feof($handle)) {
-                        $chunk = fread($handle, 8192); // Read 8KB at a time
+                        $chunk = fread($handle, 8192);
                         $data .= $chunk;
                     }
                     fclose($handle);
 
-                    // Encrypt the entire file at once to maintain binary integrity
+                    // Encrypt the data
                     $encrypted = openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
 
                     // Combine IV and encrypted data
@@ -66,22 +71,25 @@
                     $encryptedName = uniqid('file_', true) . '.enc';
                     $filename      = 'encrypted/' . $encryptedName;
 
-                    // Save encrypted file in binary mode
-                    $handle = fopen($filename, 'wb');
-                    fwrite($handle, $output);
-                    fclose($handle);
+                    // Save encrypted file
+                    file_put_contents($filename, $output);
 
                     // Save to database
                     $conn = new mysqli('localhost', 'root', '', 'image_encryption');
                     if (! $conn->connect_error) {
-                        $stmt   = $conn->prepare('INSERT INTO files (user_id, original_name, encrypted_name, file_type, file_size, encryption_key) VALUES (?, ?, ?, ?, ?, ?)');
-                        $userId = $_SESSION['user_id'];
-                        $stmt->bind_param('isssis', $userId, $originalName, $encryptedName, $fileType, $fileSize, $key);
+                        // In your encryption code (around line 60 in encrypt.php):
+    // After saving the encrypted file:
+                        $encryptedFilePath = 'encrypted/' . $encryptedName;
+                        $fileHash          = hash_file('sha256', $encryptedFilePath); // Hash the ENCRYPTED file
+
+    // Then store this hash in the database
+                        $stmt = $conn->prepare('INSERT INTO files (user_id, original_name, encrypted_name, file_type, file_size, encryption_key, file_hash) VALUES (?, ?, ?, ?, ?, ?, ?)');
+                        $stmt->bind_param('isssiss', $userId, $originalName, $encryptedName, $fileType, $fileSize, $key, $fileHash);
                         $stmt->execute();
 
                         // Log the encryption
                         $stmt    = $conn->prepare('INSERT INTO report (user_id, action, details) VALUES (?, "encrypt", ?)');
-                        $details = "Encrypted file: " . $originalName;
+                        $details = "Encrypted file: " . $originalName . " (Hash: " . $fileHash . ")";
                         $stmt->bind_param('is', $userId, $details);
                         $stmt->execute();
 
@@ -90,8 +98,9 @@
                     }
 
                     $success = "<h5 class='text-success'>Encryption Successful</h5>
-                           <p class='text-muted'>Your file has been encrypted securely.</p>
-                           <a href='$filename' class='btn btn-success mt-2' download>⬇️ Download Encrypted File</a>";
+                       <p class='text-muted'>Your file has been encrypted securely.</p>
+
+                       <a href='$filename' class='btn btn-success mt-2' download>⬇️ Download Encrypted File</a>";
                 } catch (Exception $e) {
                     $error = 'Encryption failed: ' . $e->getMessage();
                 }
@@ -244,6 +253,7 @@
                 </div>
                 <a href="dashboard.php" class="nav-link"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
                 <a href="encrypt.php" class="nav-link active"><i class="bi bi-lock"></i><span>Encrypt Files</span></a>
+                 <a href="verify.php" class="nav-link"><i class="bi bi-shield-check"></i><span>Verify Integrity</span></a>
                 <a href="decrypt.php" class="nav-link"><i class="bi bi-unlock"></i><span>Decrypt Files</span></a>
                 <a href="profile.php" class="nav-link"><i class="bi bi-person"></i><span>Profile</span></a>
                 <a href="logout.php" class="nav-link"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>

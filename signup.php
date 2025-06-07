@@ -162,6 +162,7 @@
             btnSpinner.classList.remove('d-none');
             if (typeof window.ethereum !== 'undefined') {
                 try {
+                    // Request account access if needed
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     if (accounts && accounts[0]) {
                         metamaskInput.value = accounts[0];
