@@ -182,10 +182,12 @@
         <h3 class="mb-5" style="color:#5f2c82;">Why Choose Secure Encryption?</h3>
         <div class="row g-4">
             <div class="col-md-3">
-                <div class="info-card">
-                    <i class="bi bi-shield-check fs-2 text-primary"></i>
-                    <h6 class="mt-2">Military-grade Encryption</h6>
-                </div>
+              <div class="info-card">
+    <i class="bi bi-shield-lock fs-2 text-primary"></i>
+    <h6 class="mt-2">Strong & Safe </h6>
+
+</div>
+
             </div>
             <div class="col-md-3">
                 <div class="info-card">
@@ -222,7 +224,7 @@
 <footer class="mt-5 pt-4 pb-3 bg-light border-top">
     <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center">
         <div class="text-muted small mb-2 mb-md-0">
-            &copy;                                                                                                                                                                                                       <?php echo date('Y'); ?> Secure Encryption. All rights reserved.
+            &copy;                                                                                                                                                                                                                                                                               <?php echo date('Y'); ?> Secure Encryption. All rights reserved.
         </div>
 
     </div>
